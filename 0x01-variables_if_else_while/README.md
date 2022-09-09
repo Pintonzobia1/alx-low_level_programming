@@ -1,0 +1,1 @@
+This my veriables if else and whle  read me file 

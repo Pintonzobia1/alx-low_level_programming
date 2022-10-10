@@ -9,7 +9,6 @@
  *
  * Description: struct called "dog" that stores its name, its
  * age, and the name of its owner.
-
  */
 struct dog
 {

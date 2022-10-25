@@ -1,25 +1,27 @@
-#include <stdlib.h>
-#include <time.h>
-#include <stdio.h>
+#include "lists.h"
 
 /**
- * main - Entry point
+ * get_nodeint_at_index - obtains the node at given index
+ * @head: the starting pointer to listint_t list
+ * @index: the index of the node to be obtained
  *
- * Return: Always 0 (Success)
+ * Return:  returns the nth node of a listint_t linked list.
  */
-int main(void)
+listint_t *get_nodeint_at_index(listint_t *head, unsigned int index)
 {
-	int n;
+	unsigned int n = 0;
+	listint_t *temp;
 
-	srand(time(0));
-	n = rand() - RAND_MAX / 2;
+	while (head)
+	{
+		if (n == index)
+		{
+			temp = head;
+			return (temp);
+		}
+		head = head->next;
+		n++;
+	}
 
-	if (n == 0)
-		printf("%d is zero\n", n);
-	else if (n < 0)
-		printf("%d is negative\n", n);
-	else
-		printf("%d is positive\n", n);
-
-	return (0);
+	return (NULL);
 }

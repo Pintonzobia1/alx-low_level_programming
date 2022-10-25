@@ -1,25 +1,41 @@
-#include <stdlib.h>
-#include <time.h>
-#include <stdio.h>
+#include "lists.h"
 
 /**
- * main - Entry point
+ * insert_nodeint_at_index - inserts a new node at a given position.
+ * @head: the pointer to the starting node of the listint_t list
+ * @idx: the position where the new node is to be inserted
+ * @n: the data to be stored in the new node
  *
- * Return: Always 0 (Success)
+ * Return: the address of the new node, or NULL if it failed
  */
-int main(void)
+listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 {
-	int n;
+	listint_t *new, *temp = *head;
+	unsigned int i = 0;
 
-	srand(time(0));
-	n = rand() - RAND_MAX / 2;
+	new = malloc(sizeof(listint_t));
+	if (!new)
+		return (NULL);
 
-	if (n == 0)
-		printf("%d is zero\n", n);
-	else if (n < 0)
-		printf("%d is negative\n", n);
-	else
-		printf("%d is positive\n", n);
+	new->n = n;
 
-	return (0);
+	if (!idx)
+	{
+		new->next = temp;
+		*head = new;
+		return (new);
+	}
+
+	while (i++ < (idx - 1))
+	{
+		if (!temp || !(temp->next))
+			return (NULL);
+
+		temp = temp->next;
+	}
+
+	new->next = temp->next;
+	temp->next = new;
+
+	return (new);
 }
